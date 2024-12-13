@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Issued Books to Students</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .header {
+            background-color: #198754;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-bottom: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+
+        .table-container {
+            margin: auto;
+            width: 90%;
+            overflow-x: auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            background: white;
+            padding: 15px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        table thead {
+            background-color: #607d8b;
+            color: white;
+        }
+
+        table th,
+        table td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        table tfoot {
+            background-color: #607d8b;
+            color: white;
+        }
+
+        table tfoot td {
+            text-align: right;
+            padding: 10px;
+        }
+
+        .links a {
+            color: #198754;
+            text-decoration: none;
+            padding: 5px 10px;
+            border: 1px solid #198754;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .links a:hover {
+            background-color: #198754;
+            color: white;
+        }
+
+        .empty-message {
+            text-align: center;
+            font-size: 24px;
+            color: #6c757d;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    {% include "library/navbaradmin.html" %}
+
+    <div class="header">
+        Issued Books to Students
+    </div>
+
+    {% if li %}
+    <div class="table-container">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Student Name</th>
+                    <th>Enrollment</th>
+                    <th>Book Name</th>
+                    <th>Author</th>
+                    <th>Issued</th>
+                    <th>Expiry Date</th>
+                    <th>Fine</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <td colspan="7">
+                        <div class="links">
+                            <!-- Pagination or action links can be added here -->
+                        </div>
+                    </td>
+                </tr>
+            </tfoot>
+            <tbody>
+                {% for t in li %}
+                <tr>
+                    <td>{{ t.0 }}</td>
+                    <td>{{ t.1 }}</td>
+                    <td>{{ t.2 }}</td>
+                    <td>{{ t.3 }}</td>
+                    <td>{{ t.4 }}</td>
+                    <td>{{ t.5 }}</td>
+                    <td>{{ t.6 }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div class="empty-message">
+        0 books issued.
+    </div>
+    {% endif %}
+
+    <br><br><br>
+    {% include "library/footer.html" %}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
